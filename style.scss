@@ -1,0 +1,749 @@
+@font-face {
+  font-family: "BrandonGrotesque-Regular";
+  src: url("fonts/BrandonGrotesque-Regular.eot?#iefix")
+      format("embedded-opentype"),
+    url("fonts/BrandonGrotesque-Regular.otf") format("opentype"),
+    url("fonts/BrandonGrotesque-Regular.woff") format("woff"),
+    url("fonts/BrandonGrotesque-Regular.ttf") format("truetype"),
+    url("fonts/BrandonGrotesque-Regular.svg#BrandonGrotesque-Regular")
+      format("svg");
+}
+@font-face {
+  font-family: "BrandonGrotesque-Medium";
+  src: url("fonts/BrandonGrotesque-Medium.eot?#iefix")
+      format("embedded-opentype"),
+    url("fonts/BrandonGrotesque-Medium.otf") format("opentype"),
+    url("fonts/BrandonGrotesque-Medium.woff") format("woff"),
+    url("fonts/BrandonGrotesque-Medium.ttf") format("truetype"),
+    url("fonts/BrandonGrotesque-Medium.svg#BrandonGrotesque-Regular")
+      format("svg");
+}
+@font-face {
+  font-family: "BrandonGrotesque-Light";
+  src: url("fonts/BrandonGrotesque-Light.eot?#iefix")
+      format("embedded-opentype"),
+    url("fonts/BrandonGrotesque-Light.otf") format("opentype"),
+    url("fonts/BrandonGrotesque-Light.woff") format("woff"),
+    url("fonts/BrandonGrotesque-Light.ttf") format("truetype"),
+    url("fonts/BrandonGrotesque-Light.svg#BrandonGrotesque-Regular")
+      format("svg");
+}
+@font-face {
+  font-family: "BrandonGrotesque-Bold";
+  src: url("fonts/BrandonGrotesque-Bold.eot?#iefix") format("embedded-opentype"),
+    url("fonts/BrandonGrotesque-Bold.otf") format("opentype"),
+    url("fonts/BrandonGrotesque-Bold.woff") format("woff"),
+    url("fonts/BrandonGrotesque-Bold.ttf") format("truetype"),
+    url("fonts/BrandonGrotesque-Bold.svg#BrandonGrotesque-Regular")
+      format("svg");
+}
+@font-face {
+  font-family: "BrandonGrotesque-Black";
+  src: url("fonts/BrandonGrotesque-Black.eot?#iefix")
+      format("embedded-opentype"),
+    url("fonts/BrandonGrotesque-Black.otf") format("opentype"),
+    url("fonts/BrandonGrotesque-Black.woff") format("woff"),
+    url("fonts/BrandonGrotesque-Black.ttf") format("truetype"),
+    url("fonts/BrandonGrotesque-Black.svg#BrandonGrotesque-Regular")
+      format("svg");
+}
+
+$azul: #29305f;
+$azulclaro: #4ccba6;
+$naranja: #f8a41d;
+$amarillo: #f8fb32;
+
+$cel: 479px;
+$nocel: 479px;
+$tableta: 768px;
+$tableta-land: 1024px;
+$hd: 1600px;
+
+@mixin cel {
+  @media (max-width: #{$cel}) {
+    @content;
+  }
+}
+
+@mixin nocel {
+  @media (min-width: #{$nocel}) {
+    @content;
+  }
+}
+
+@mixin tableta_land {
+  @media (min-width: #{$tableta-land}) and (max-width: #{$hd - 1px}) {
+    @content;
+  }
+}
+
+@mixin tableta {
+  @media (min-width: #{$tableta - 1px}) and (max-width: #{$tableta-land - 1px}) {
+    @content;
+  }
+}
+
+@mixin hd {
+  @media (min-width: #{$hd}) {
+    @content;
+  }
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  font-family: BrandonGrotesque-Regular;
+  font-size: calc(112.5% + 0.25vw);
+}
+
+h1,
+h2,
+h3 {
+  padding: 0;
+  margin: 0;
+}
+
+h1 {
+  font-family: BrandonGrotesque-Black;
+  font-size: 2em;
+}
+h2 {
+  font-family: BrandonGrotesque-Bold;
+  font-size: 1.5em;
+}
+h3 {
+  font-family: BrandonGrotesque-Medium;
+  font-size: 1.5em;
+}
+li {
+  list-style: none;
+  list-style-position: inside;
+  display: inline;
+}
+a {
+  text-decoration: none;
+  text-align: middle;
+  color: $azul;
+  &:hover {
+    color: $naranja;
+  }
+}
+
+img {
+  width: 100%;
+  height: auto;
+}
+
+nav {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  @include cel {
+    grid-template-columns: 1.2fr 1fr;
+  }
+
+  .logo {
+    padding: 1em;
+    max-width: 15em;
+    @include cel {
+      padding: 1.3em 0.5em 0;
+    }
+  }
+  .navNav {
+    text-align: right;
+    padding: 0 1.5em;
+  }
+}
+
+.anima {
+  -webkit-transition: all 0.25s ease-in-out;
+  -o-transition: all 0.25s ease-in-out;
+  transition: all 0.25s ease-in-out;
+}
+
+@keyframes menuAbierto {
+  100% {
+    width: 100%;
+    height: 100vh;
+  }
+  30% {
+    width: 100%;
+    height: 10vh;
+  }
+}
+@keyframes menuCerrado {
+  100% {
+    width: 100%;
+    height: 100vh;
+  }
+  30% {
+    width: 0%;
+    height: 100vh;
+  }
+}
+
+#menuFull {
+  //display: none;
+  // @extend .anima;
+  //visibility: hidden;
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 0%;
+  height: 0vh;
+  background-color: $azulclaro;
+  z-index: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+
+  ul {
+    padding: 0;
+    margin: 0;
+  }
+  li {
+    display: list-item;
+    position: relative;
+  }
+  a {
+    font-size: 1.8em;
+    @include cel {
+      font-size: 1.3em;
+    }
+    @extend .anima;
+  }
+  a:hover,
+  .active {
+    font-weight: bold;
+    color: $azul;
+
+    &::before {
+      content: "";
+      width: 0.5em;
+      height: 0.5em;
+      background-color: $amarillo;
+      position: absolute;
+      top: 0.6em;
+      left: -0.7em;
+      border-radius: 50vh;
+    }
+  }
+}
+.menuFullAbierto {
+  // display: block !important;
+  //visibility: visible !important;
+  animation: menuAbierto 1.2s ease forwards;
+}
+
+.desanimaMenu {
+  animation: menuCerrado 1s ease forwards reverse;
+}
+// icono de nav
+.menu-toggle {
+  position: relative;
+  z-index: 520;
+  width: 30px;
+  height: 22px;
+  background: transparent;
+  border-top: 4px solid;
+  border-left: 6px solid transparent;
+  border-bottom: 4px solid;
+  color: $naranja;
+  font-size: 0;
+  -webkit-transition: all 0.25s ease-in-out;
+  -o-transition: all 0.25s ease-in-out;
+  transition: all 0.25s ease-in-out;
+}
+.menu-toggle:before,
+.menu-toggle:after {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 4px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  background: currentColor;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  -webkit-transition: -webkit-transform 0.25s ease-in-out;
+  transition: -webkit-transform 0.25s ease-in-out;
+  -o-transition: transform 0.25s ease-in-out;
+  transition: transform 0.25s ease-in-out;
+  transition: transform 0.25s ease-in-out, -webkit-transform 0.25s ease-in-out;
+}
+
+button.is-active {
+  border-color: transparent;
+  border-left: none;
+}
+button.is-active:before {
+  -webkit-transform: translate(-50%, -50%) rotate(45deg);
+  -ms-transform: translate(-50%, -50%) rotate(45deg);
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+button.is-active:after {
+  -webkit-transform: translate(-50%, -50%) rotate(-45deg);
+  -ms-transform: translate(-50%, -50%) rotate(-45deg);
+  transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+button {
+  border: none;
+  cursor: pointer;
+  outline: none;
+  vertical-align: middle;
+}
+
+.boton {
+  display: inline-block;
+  background-color: $azulclaro;
+  color: #fff;
+  font-size: 0.6em;
+  padding: 0.2em 0.8em;
+  position: relative;
+  border-radius: 50vw 0 0 50vw;
+  @include cel {
+    font-size: 0.8em;
+    border-radius: 50vh 0 0 50vh;
+  }
+  @extend .anima;
+  &:hover {
+    transform: scale(1.1);
+    -webkit-transform: scale(1.1);
+    background-color: $naranja;
+    color: #fff;
+    &:after {
+      background-color: $azulclaro;
+      color: $azul;
+    }
+  }
+  &:after {
+    position: absolute;
+    top: 0;
+    right: -1.4em;
+    font-family: "Font Awesome 5 Free";
+    content: "\f054";
+    color: #fff;
+    width: auto;
+    padding: 0 0.4em;
+    height: 100%;
+    background-color: $azul;
+    border-radius: 0 50vw 50vw 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+//-----------------------//
+#conte {
+  display: grid;
+  grid-template-columns: 10% 1fr 10%;
+}
+
+#heroHome {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-wrap: wrap;
+  height: 80vh;
+  margin-bottom: 5em;
+
+  .titulosHeroHome {
+    background: url("/img/portadaHeroHome.jpg") no-repeat;
+    background-size: contain;
+    background-position: right center;
+    color: $azul;
+    flex: 10 0 300px;
+    padding: 3em;
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    color: $azul;
+    flex: 3 1 100px;
+    @include cel {
+      background-position: right bottom;
+      padding: 1em;
+    }
+
+    .bandejaCentrada {
+      align-self: center;
+      grid-column: 2 /-2;
+      @include cel {
+        align-self: start;
+        margin-top: 3em;
+      }
+    }
+    h1 {
+      font-size: 2.6em;
+    }
+    h2 {
+      font-family: BrandonGrotesque-light;
+      line-height: 1em;
+    }
+    span {
+      font-size: 1em;
+      line-height: 2.5em;
+      line-height: 2em;
+    }
+  }
+
+  .fondoHeroLat {
+    background-image: url("/img/fondoD_gradiente.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    flex: 1 1 auto;
+    @include cel {
+      background-size: auto 55%;
+      background-position: 0 100%;
+    }
+  }
+}
+
+@mixin galeria($fondoColor, $linea, $fondo, $color, $colorH3, $colorCat) {
+  grid-column: 1 /-1;
+  display: grid;
+  grid-template-columns: 10% 1fr 10%;
+
+  .conteTit {
+    border-radius: 0 5vw 0 0;
+    grid-column: 1 / span 2;
+    width: 80%;
+    height: 60vh;
+    color: #fff;
+    background: url($fondo) no-repeat;
+    background-size: 100% auto;
+    @include cel {
+      width: auto;
+      grid-column: 1 / -1;
+      height: 40vh;
+    }
+    display: flex;
+    grid-template-columns: inherit;
+    h2 {
+      color: $naranja;
+    }
+    .conteExtra {
+      grid-column: 2 / span 1;
+
+      align-self: center;
+      padding-left: 10%;
+    }
+  }
+
+  .gale {
+    grid-column: 2 / span 1;
+    margin-top: -10vh;
+    column-count: 3;
+    @include cel {
+      column-count: 1;
+    }
+    @include hd {
+      column-count: 4;
+    }
+    a {
+      color: #fff;
+    }
+
+    .tarjetaGale {
+      background-color: $fondoColor;
+      color: $color;
+      display: inline-block;
+      margin-bottom: 1em;
+      img {
+        @extend .anima;
+      }
+
+      &:hover {
+        img {
+          border-radius: 2vw;
+          transform: scale(1.1);
+          -webkit-transform: scale(1.1);
+          -moz-transform: scale(1.1);
+          z-index: 500;
+        }
+      }
+      .conteIntTar {
+        padding: 2em;
+      }
+      h3 {
+        color: $colorH3;
+        position: relative;
+        &:before {
+          content: "";
+          background: url($linea) no-repeat;
+          background-size: 35%;
+          position: absolute;
+          width: 100%;
+          height: 20px;
+          top: -20px;
+        }
+      }
+      .cat {
+        font-size: 0.8em;
+        border-top: solid 1px $colorCat;
+        display: inline;
+        a {
+          color: #fff !important;
+        }
+        a:hover {
+          color: $amarillo !important;
+        }
+      }
+    }
+  }
+}
+
+#enterate {
+  @include galeria(
+    $azul,
+    "/img/lineaVerda.svg",
+    "/img/fondoE_gradiente.jpg",
+    #fff,
+    $azulclaro,
+    $amarillo
+  );
+}
+#conoce {
+  @include galeria(
+    $azul,
+    "/img/lineaVerda.svg",
+    "/img/fondoD_gradiente.jpg",
+    #fff,
+    $azulclaro,
+    $amarillo
+  );
+}
+
+@mixin tarjetas($colorfondo, $lineas, $color, $fondo) {
+  grid-column: 1 / -1;
+  display: inherit;
+  grid-template-columns: inherit;
+  margin: 5em 0;
+  background: url($fondo) no-repeat;
+  background-size: 40% auto;
+  background-position: 100% 20%;
+  @include cel {
+    background-size: 100% auto;
+    background-position: 0% 15%;
+  }
+  h2,
+  p {
+    grid-column: 2 / span 1;
+  }
+  h2 {
+    color: $naranja;
+  }
+  .liga {
+    grid-column: 2;
+    margin-top: 3em;
+  }
+  #bandejaOfertaHome {
+    grid-column: 2 / span 1;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1em;
+    align-items: flex-start;
+
+    .tarjetaOfertasHome {
+      background-color: $colorfondo;
+      border-radius: 2vw;
+      flex: 1 0 300px;
+      p {
+        padding: 1em 2em;
+        color: $color;
+      }
+      h3 {
+        padding: 2em 1em 1em;
+        color: $color;
+        position: relative;
+        font-size: 1.2em;
+        line-height: 1.1em;
+        &:before {
+          content: "";
+          background: url($lineas) no-repeat;
+          background-size: 35%;
+          position: absolute;
+          width: 100%;
+          height: 2em;
+          top: 40px;
+        }
+      }
+      p {
+        font-size: 0.8em;
+      }
+      img {
+        object-fit: cover;
+        width: 100%;
+        height: 11em;
+      }
+    }
+  }
+}
+
+#ofertasHome {
+  @include tarjetas(
+    $amarillo,
+    "/img/lineaVerda.svg",
+    $azul,
+    "/img/fondoC_gradiente.jpg"
+  );
+}
+#eventosHome {
+  @include tarjetas(
+    $azul,
+    "/img/lineaAmarilla.svg",
+    $amarillo,
+    "/img/fondoB_gradiente.jpg"
+  );
+}
+.suscribete {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: 1fr 1fr 2fr;
+
+  h2 {
+    color: $naranja;
+    position: relative;
+    &:before {
+      content: "";
+      background: url("/img/lineaVerda.svg") no-repeat;
+      background-size: 35%;
+      position: absolute;
+      width: 70%;
+      height: 2em;
+      top: -1em;
+    }
+  }
+  .izq {
+    background: url(/img/fondoA_gradiente.jpg) no-repeat;
+    grid-column: 1 / span 2;
+    grid-row: 1;
+    border-radius: 0 10vw 10vw 0;
+    width: 80%;
+    @include cel {
+      width: 100%;
+      height: 25vh;
+      grid-column: 1 / span 2;
+    }
+  }
+  .coco {
+    grid-column: 2 / span 1;
+    grid-row: 1;
+    align-self: center;
+    @include cel {
+      grid-column: 2 / span 2;
+    }
+  }
+  .der {
+    grid-column: 3 / span 1;
+    grid-row: 1;
+    padding: 5em;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    @include cel {
+      grid-column: 1/-1;
+      grid-row: 2;
+      padding: 3em;
+    }
+  }
+}
+
+label {
+  color: $azul;
+  font-size: 0.8em;
+  margin-bottom: 0.5em;
+  display: block;
+}
+input {
+  border: none;
+  background-color: $naranja;
+  color: #fff;
+  font-size: 0.8em;
+  padding: 0.5em;
+  border-radius: 10vw;
+  margin-bottom: 0.5em;
+  @include cel {
+    width: 100%;
+  }
+}
+input[type="button"] {
+  display: block;
+  position: relative;
+  border-radius: 3vw;
+  @include cel {
+    margin-top: 1em;
+    border-radius: 5vh;
+  }
+}
+
+#footer {
+  background-color: $azulclaro;
+  grid-column: 1 / span 2;
+  border-radius: 0 10vw 0 0;
+  color: #fff;
+  padding: 5em;
+  position: relative;
+
+  &:before {
+    content: "";
+    height: 100%;
+    width: 30%;
+    background: url("/img/fondoB_gradiente.jpg") no-repeat $amarillo;
+    background-size: 100% auto;
+    position: absolute;
+    top: -3em;
+    right: -11%;
+    z-index: -1;
+  }
+  @include cel {
+    padding: 2em;
+  }
+  margin-top: 4em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  p {
+    font-size: 0.7em;
+  }
+  a:hover {
+    color: $azul;
+    font-weight: bold;
+  }
+  ul {
+    display: flex;
+    gap: 0.7em;
+    flex-wrap: wrap;
+    position: relative;
+    padding: 0;
+    @include cel {
+      flex-direction: column;
+      padding: 0.5em 0;
+      gap: 0.2em;
+    }
+    &:before {
+      content: "";
+      background: url("/img/lineaAmarilla.svg") no-repeat;
+      background-size: 15%;
+      position: absolute;
+      width: 100%;
+      height: 2em;
+      top: -30px;
+      @include cel {
+        background-size: 50%;
+        top: -15px;
+      }
+    }
+  }
+  img {
+    width: 60%;
+    height: auto;
+    @include cel {
+      width: 100%;
+    }
+  }
+}
