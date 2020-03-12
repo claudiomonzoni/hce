@@ -444,6 +444,9 @@ button {
     @include cel {
       grid-template-columns: 1fr;
     }
+    @include hd {
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
     a {
       color: #fff;
     }
@@ -456,6 +459,9 @@ button {
       }
       img {
         @extend .anima;
+        width: 100%;
+        height: 12em;
+        object-fit: cover;
       }
 
       &:hover {
@@ -473,6 +479,7 @@ button {
       h3 {
         color: $colorH3;
         position: relative;
+        font-size: 1.2em;
         &:before {
           content: "";
           background: url($linea) no-repeat;
@@ -482,6 +489,9 @@ button {
           height: 20px;
           top: -20px;
         }
+      }
+      p {
+        font-size: 0.8em;
       }
       .cat {
         font-size: 0.8em;
@@ -552,10 +562,12 @@ button {
     .tarjetaOfertasHome {
       background-color: $colorfondo;
       border-radius: 2vw;
-      display: block;
+      display: inline-block;
       p {
-        padding: 1em 2em;
+        padding: 0.7em 1.5em 1.5em;
+        margin: 0;
         color: $color;
+        font-size: 0.8em;
       }
       h3 {
         padding: 2em 1em 1em;
@@ -572,9 +584,6 @@ button {
           height: 2em;
           top: 30px;
         }
-      }
-      p {
-        font-size: 0.8em;
       }
       img {
         object-fit: cover;
