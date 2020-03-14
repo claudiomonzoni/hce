@@ -346,18 +346,23 @@ button {
   grid-template-columns: 10% 1fr 10%;
 }
 
-#heroHome {
+@mixin hero($fondo, $fondoLat, $color, $altura, $int) {
   grid-column: 1 / -1;
   display: flex;
   flex-wrap: wrap;
-  height: 80vh;
+  height: $altura;
   margin-bottom: 5em;
+  @if $int {
+    @include hd {
+      height: 40vh;
+    }
+  }
 
   .titulosHeroHome {
-    background: url("/img/portadaHeroHome.jpg") no-repeat;
+    background: url($fondo) no-repeat;
     background-size: contain;
     background-position: right center;
-    color: $azul;
+    color: $color;
     flex: 10 0 300px;
     padding: 3em;
     display: grid;
@@ -379,20 +384,23 @@ button {
     }
     h1 {
       font-size: 2.6em;
+      color: $color;
     }
     h2 {
       font-family: BrandonGrotesque-light;
       line-height: 1em;
+      color: $color;
     }
     span {
       font-size: 1em;
       line-height: 2.5em;
       line-height: 2em;
+      color: $color;
     }
   }
 
   .fondoHeroLat {
-    background-image: url("/img/fondoD_gradiente.jpg");
+    background-image: url($fondoLat);
     background-size: cover;
     background-repeat: no-repeat;
     flex: 1 1 auto;
@@ -401,6 +409,24 @@ button {
       background-position: 0 100%;
     }
   }
+}
+#heroHome {
+  @include hero(
+    "/img/portadaHeroHome.jpg",
+    "/img/fondoD_gradiente.jpg",
+    $azul,
+    80vh,
+    false
+  );
+}
+#heroHoteles {
+  @include hero(
+    "/img/hotelesInt.jpg",
+    "/img/fondoE_gradiente.jpg",
+    $naranja,
+    80vh,
+    true
+  );
 }
 
 @mixin galeria($fondoColor, $linea, $fondo, $color, $colorH3, $colorCat) {
@@ -412,10 +438,11 @@ button {
     border-radius: 0 5vw 0 0;
     grid-column: 1 / span 2;
     width: 80%;
-    height: 60vh;
+    height: 50vh;
     color: #fff;
     background: url($fondo) no-repeat;
     background-size: 100% auto;
+    margin-top: 3em;
     @include cel {
       width: auto;
       grid-column: 1 / -1;
@@ -431,6 +458,21 @@ button {
 
       align-self: center;
       padding-left: 10%;
+    }
+  }
+
+  .imasGale {
+    grid-column: 2 / span 1;
+    column-count: 2;
+    column-gap: 1em;
+    margin-top: -10vh;
+    break-inside: avoid;
+    p {
+      background-color: #fff;
+      padding: 2em;
+    }
+    @include cel {
+      column-count: 1;
     }
   }
 
@@ -561,8 +603,9 @@ button {
 
     .tarjetaOfertasHome {
       background-color: $colorfondo;
-      border-radius: 2vw;
-      display: inline-block;
+      border-radius: 3vw;
+      margin-top: 1em;
+      break-inside: avoid;
       p {
         padding: 0.7em 1.5em 1.5em;
         margin: 0;
@@ -755,5 +798,143 @@ input[type="button"] {
     @include cel {
       width: 100%;
     }
+  }
+}
+
+#categoria {
+  h2,
+  p {
+    grid-column: 2;
+  }
+  p {
+    color: $azul;
+    border-bottom: solid 1px $naranja;
+    padding-bottom: 1em;
+  }
+  .gale {
+    margin-top: 5vh !important;
+  }
+  @include galeria(
+    $azulclaro,
+    "/img/lineaVerda.svg",
+    "/img/fondoE_gradiente.jpg",
+    #fff,
+    $azul,
+    $amarillo
+  );
+}
+
+@mixin heroInt($colorH2, $colorP, $fondoC) {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: 1fr 1fr 10%;
+  @include cel {
+    grid-template-columns: 1fr;
+  }
+
+  .a {
+    grid-column: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 2em;
+    h2 {
+      color: $colorH2;
+    }
+    p {
+      color: $colorP;
+    }
+  }
+  .b {
+    grid-column: 2 / span 1;
+    background-color: $azul;
+  }
+  .c {
+    background: url($fondoC) no-repeat;
+    @include cel {
+      height: 10vh;
+      margin: 5vh 0;
+    }
+  }
+}
+#heroOfertas {
+  @include heroInt($azulclaro, $azul, "/img/fondoE_gradiente.jpg");
+}
+
+#aunmas {
+  grid-column: 2 / -1;
+  background-color: $naranja;
+  padding: 2em;
+  margin: 3em 0 5em;
+  position: relative;
+  &::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: $azul;
+    grid-column: 1 / span 2;
+    border-radius: 0 0 5vw 0;
+    bottom: -3em;
+    left: -11%;
+    z-index: -10;
+  }
+
+  h2 {
+    padding: 1em 0;
+    &:before {
+      content: "";
+      background: url("/img/lineaBlanca.svg") no-repeat;
+      background-size: 35%;
+      position: absolute;
+      width: 40%;
+      height: 2em;
+      top: 1.5em;
+      @include cel {
+        width: 60%;
+      }
+    }
+  }
+}
+
+#mapa {
+  display: inherit;
+  grid-template-columns: repeat(auto-fill, minmax(20%, 1fr));
+  grid-column: 1/ -1;
+
+  margin: 5em 0 0;
+}
+.map {
+  grid-column: 1/ -1;
+  grid-row: 1 / -1;
+  background-color: $amarillo;
+  height: 80vh;
+  @include cel {
+    grid-row: 1 / span 1;
+  }
+}
+#recuadroInfo {
+  grid-column: 4/ -1;
+  grid-row: 1 / -1;
+  padding: 2em;
+  align-self: center;
+  background-color: $azul;
+  @include cel {
+    grid-column: 1 / -1;
+    grid-row: 2 / span 1;
+    align-self: flex-end;
+  }
+  h2 {
+    color: $amarillo;
+  }
+  ul {
+    padding: 0;
+  }
+  li {
+    display: flex;
+    flex-direction: column;
+  }
+  a {
+    color: $azulclaro;
   }
 }
