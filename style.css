@@ -1530,7 +1530,7 @@ input[type="button"] {
   margin: 5em 0 0;
 }
 
-.map {
+#map {
   grid-column: 1/ -1;
   grid-row: 1 / -1;
   background-color: #f8fb32;
@@ -1538,7 +1538,7 @@ input[type="button"] {
 }
 
 @media (max-width: 479px) {
-  .map {
+  #map {
     -ms-grid-row: 1;
     -ms-grid-row-span: 1;
     grid-row: 1 / span 1;
@@ -1553,6 +1553,7 @@ input[type="button"] {
       -ms-grid-row-align: center;
       align-self: center;
   background-color: #29305f;
+  z-index: 800;
 }
 
 @media (max-width: 479px) {

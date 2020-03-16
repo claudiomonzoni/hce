@@ -904,7 +904,7 @@ input[type="button"] {
 
   margin: 5em 0 0;
 }
-.map {
+#map {
   grid-column: 1/ -1;
   grid-row: 1 / -1;
   background-color: $amarillo;
@@ -919,6 +919,7 @@ input[type="button"] {
   padding: 2em;
   align-self: center;
   background-color: $azul;
+  z-index: 800;
   @include cel {
     grid-column: 1 / -1;
     grid-row: 2 / span 1;
