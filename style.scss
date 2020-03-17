@@ -724,6 +724,20 @@ input {
     width: 100%;
   }
 }
+
+textarea {
+  border: none;
+  background-color: $naranja;
+  color: #fff;
+  font-size: 0.8em;
+  padding: 0.5em;
+  border-radius: 2vw;
+  margin-bottom: 0.5em;
+  @include cel {
+    width: 100%;
+  }
+}
+
 input[type="button"] {
   display: block;
   position: relative;
@@ -910,6 +924,7 @@ input[type="button"] {
   background-color: $amarillo;
   height: 80vh;
   @include cel {
+    height: 60vh;
     grid-row: 1 / span 1;
   }
 }
@@ -937,5 +952,85 @@ input[type="button"] {
   }
   a {
     color: $azulclaro;
+  }
+}
+
+#detallesHotel {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin: 5em 0;
+  @include cel {
+    grid-template-columns: 1fr;
+  }
+  .conteDetalles {
+    padding: 3em;
+    font-size: 0.8em;
+    order: 2;
+    @include cel {
+      order: 1;
+    }
+  }
+  .amenidades {
+    color: #fff;
+    background-color: $azul;
+    border-radius: 0 5vw 5vw 0;
+    display: flex;
+    flex-direction: column;
+    padding: 3em;
+    align-self: center;
+    order: 1;
+    @include cel {
+      order: 2;
+    }
+    h2 {
+      color: $amarillo;
+      position: relative;
+      &:before {
+        content: "";
+        background: url("/img/lineaAmarilla.svg") no-repeat;
+        background-size: 35%;
+        position: absolute;
+        width: 70%;
+        height: 20px;
+        top: -25px;
+      }
+    }
+    ul {
+      padding: 0;
+      column-count: 2;
+      column-gap: 1em;
+    }
+    li {
+      display: list-item;
+    }
+  }
+}
+#contactoHotel {
+  grid-column: 2;
+  margin-top: 5em;
+  padding: 0 20%;
+  @include cel {
+    padding: 0 5%;
+  }
+  h2 {
+    color: $azulclaro;
+    position: relative;
+    &:before {
+      content: "";
+      background: url("/img/lineaVerda.svg") no-repeat;
+      background-size: 45%;
+      position: absolute;
+      width: 70%;
+      height: 20px;
+      top: -25px;
+    }
+  }
+  ul {
+    border-top: $azulclaro 1px solid;
+    padding: 1em 0;
+  }
+  li {
+    display: list-item;
   }
 }
