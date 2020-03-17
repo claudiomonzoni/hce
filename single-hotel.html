@@ -165,7 +165,9 @@
 
           inicializarMapa() {
             // Inicializar y obtener la propiedad del mapa
-            const map = L.map("map").setView([17.64083, -101.549114], 16);
+            const map = L.map("map").setView([17.64083, -101.549114], 16, {
+              dragging: !L.Browser.mobile
+            });
             const enlaceMapa =
               '<a href="http://openstreetmap.org">OpenStreetMap</a>';
             L.tileLayer("http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
